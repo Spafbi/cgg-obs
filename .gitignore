@@ -161,6 +161,3 @@ cython_debug/
 
 # Testfiles
 testfile.json
-obs/*
-mods/*
-plugins/*
