@@ -175,7 +175,7 @@ def extract_7z(target_directory, filename):
     logging.debug(f"  target_directory: {target_directory}")
     try:
         archive = py7zr.SevenZipFile(filename, mode="r")
-        archive.extractall(path="target_directory")
+        archive.extractall(path=target_directory)
         archive.close()
         return True
     except Exception as e:
@@ -299,17 +299,15 @@ def main():
     verbose = True if len(glob(str(Path(f"{script_path}/debug*")))) else False
 
     # Enable either INFO or DEBUG logging
+    cgg_obs_logger = logging.getLogger()
+    output_file_handler = logging.FileHandler("setup.log")
+    stdout_handler = logging.StreamHandler(sys.stdout)
+    cgg_obs_logger.addHandler(output_file_handler)
+    cgg_obs_logger.addHandler(stdout_handler)
     if verbose or args.verbose:
-        cgg_obs_logger = logging.getLogger()
         cgg_obs_logger.setLevel(logging.DEBUG)
-
-        output_file_handler = logging.FileHandler("setup.log")
-        stdout_handler = logging.StreamHandler(sys.stdout)
-
-        cgg_obs_logger.addHandler(output_file_handler)
-        cgg_obs_logger.addHandler(stdout_handler)
     else:
-        logging.basicConfig(level=logging.INFO)
+        cgg_obs_logger.setLevel(logging.INFO)
 
     # Download the JSON content from the Gist
     response = requests.get(gist_url)
