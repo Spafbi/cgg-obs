@@ -289,12 +289,6 @@ def main():
     # This just grabs our script's path for reuse
     script_path = os.path.abspath(os.path.dirname(sys.argv[0]))
 
-    # Check to see if the path includes a space and exit if it does
-    if script_path.find(" ") >= 0:
-        print("This script cannot be run in paths having spaces. Current path:")
-        print(f"   {script_path}" + "\n")
-        return
-
     # Check for files to trigger debug logging
     verbose = True if len(glob(str(Path(f"{script_path}/debug*")))) else False
 
