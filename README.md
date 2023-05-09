@@ -5,12 +5,13 @@ May be run as an executable ([downloaded from here](https://github.com/spafbi/cg
 ## Options
 These options may be used with both the executable and python script.
 ```txt
-usage: setup-cgg-obs.py [-h] [-t TARGET] [-d DOWNLOADS] [-v]
+usage: setup-cgg-obs.py [-h] [-j JSON] [-t TARGET] [-d DOWNLOADS] [-v]
 
 setup-cgg-obs.py executes the CGG OBS installation and update tool.
 
 options:
   -h, --help            show this help message and exit
+  -j JSON, --json JSON  May be used to specify a local JSON file
   -t TARGET, --target TARGET
                         Target installation directory
   -d DOWNLOADS, --downloads DOWNLOADS
