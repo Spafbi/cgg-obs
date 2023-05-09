@@ -318,11 +318,11 @@ def main():
     if os.path.isfile(json_path):
         try:
             with open(json_path) as f:
-             json_data = json.load(f)
+                json_data = json.load(f)
         except Exception as e:
             logging.debug(e)
             logging.debug("Configuration file load error. Using default configuration")
-            json_data={}
+            json_data = {}
     else:
         gist_url = "https://cgg.spafbi.com/cgg-obs.json"
         response = requests.get(gist_url)
