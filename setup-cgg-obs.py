@@ -3,6 +3,7 @@ from os.path import abspath, basename, dirname
 from pathlib import Path
 from win32com.client import Dispatch
 import argparse
+
 # import ctypes
 import hashlib
 import inspect
@@ -19,8 +20,6 @@ import winshell
 import zipfile
 
 sys.path.insert(1, abspath(dirname(sys.argv[0])))
-
-gist_url = "https://cgg.spafbi.com/cgg-obs.json"
 
 
 def print_text(
@@ -228,7 +227,9 @@ def move_directory(source, destination):
 def create_shortcut(installation_directory, icon_name):
     desktop = winshell.desktop()
     bin_path = Path(f"{installation_directory}/bin/64bit/obs64.exe")
-    target = Dispatch("WScript.Shell").CreateShortCut(desktop + "\\Chaotic Good Gaming OBS.lnk")
+    target = Dispatch("WScript.Shell").CreateShortCut(
+        desktop + "\\Chaotic Good Gaming OBS.lnk"
+    )
     target.Targetpath = f"{bin_path}"
     if os.path.exists(Path(f"{installation_directory}/{icon_name}")):
         icon_location = Path(f"{installation_directory}/{icon_name}")
@@ -236,6 +237,7 @@ def create_shortcut(installation_directory, icon_name):
     target.WorkingDirectory = dirname(bin_path)
     # target.ShellExecute = "runas" # This doesn't work - was to set shortcut to run as admin
     target.save()
+
 
 def main():
     """
@@ -253,6 +255,14 @@ def main():
     # Set up argparse to help people use this as a CLI utility
     parser = argparse.ArgumentParser(prog=prog, description=description)
 
+    parser.add_argument(
+        "-j",
+        "--json",
+        type=str,
+        required=False,
+        help="""May be used to specify a local JSON file""",
+        default="__invalid__",
+    )
     parser.add_argument(
         "-t",
         "--target",
@@ -303,15 +313,26 @@ def main():
     else:
         cgg_obs_logger.setLevel(logging.INFO)
 
-    # Download the JSON content from the Gist
-    response = requests.get(gist_url)
-    json_data = response.text
+    # Download the JSON content from the Gist or load from local file
+    json_path = Path(args.json)
+    if os.path.isfile(json_path):
+        try:
+            with open(json_path) as f:
+             json_data = json.load(f)
+        except Exception as e:
+            logging.debug(e)
+            logging.debug("Configuration file load error. Using default configuration")
+            json_data={}
+    else:
+        gist_url = "https://cgg.spafbi.com/cgg-obs.json"
+        response = requests.get(gist_url)
+        json_data = response.text
+        json_data = json.loads(json_data)
 
-    # Parse the JSON string
-    gist_data = json.loads(json_data)
-    data = gist_data.get("downloads", dict())
-    icon = gist_data.get("icon", dict())
-    moves = gist_data.get("moves", dict())
+    # Get some vars from the json_data
+    data = json_data.get("downloads", dict())
+    icon = json_data.get("icon", dict())
+    moves = json_data.get("moves", dict())
 
     # Let's first download and extract OBS
     this_obs = data.get("OBS", False)
