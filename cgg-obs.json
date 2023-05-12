@@ -1,4 +1,36 @@
 {
+    "branding": {
+        "CGG": {
+            "download_url": "https://cgg.spafbi.com/cgg-rotated-logo.ico",
+            "filename": "cgg-rotated-logo.ico",
+            "md5": "56adbdc70f03bcae2681f9af68cd5677",
+            "shortcut_name": "Chaotic Good Gaming OBS"
+        },
+        "FGA": {
+            "download_url": "https://cgg.spafbi.com/cgg-rotated-logo.ico",
+            "filename": "cgg-rotated-logo.ico",
+            "md5": "56adbdc70f03bcae2681f9af68cd5677",
+            "shortcut_name": "Fantasy Grounds Academy OBS"
+        },
+        "GC": {
+            "download_url": "https://cgg.spafbi.com/cgg-rotated-logo.ico",
+            "filename": "cgg-rotated-logo.ico",
+            "md5": "56adbdc70f03bcae2681f9af68cd5677",
+            "shortcut_name": "GaryCon OBS"
+        },
+        "PD": {
+            "download_url": "https://cgg.spafbi.com/cgg-rotated-logo.ico",
+            "filename": "cgg-rotated-logo.ico",
+            "md5": "56adbdc70f03bcae2681f9af68cd5677",
+            "shortcut_name": "Pixels & Dice OBS"
+        },
+        "SOB": {
+            "download_url": "https://discord.spafbi.com/sob.ico",
+            "filename": "sob.ico",
+            "md5": "9662cff0873b207b21af6db09ae05763",
+            "shortcut_name": "Sneaky Old Bastards OBS"
+        }
+    },
     "downloads": {
         "3D Effect": {
             "download_url": "https://obsproject.com/forum/resources/3d-effect.1692/version/4802/download?file=92514",
@@ -11,9 +43,9 @@
             "md5": "5bcf697619fd71a1baacac960f9193f5"
         },
         "Background Removal / Portrait Segmentation / Virtual Green-screen": {
-            "download_url": "https://github.com/royshil/obs-backgroundremoval/releases/download/v0.5.18/obs-backgroundremoval-0.5.18-windows-x64.zip",
+            "download_url": "https://github.com/royshil/obs-backgroundremoval/releases/download/v0.5.19/obs-backgroundremoval-0.5.19-windows-x64.zip",
             "filename": "obs-backgroundremoval-windows-x64.zip",
-            "md5": "02534cbcc7ccb9569c857d02e4756c6a"
+            "md5": "486117ba2e32b0ecc6e50f4586b48353"
         },
         "Blur": {
             "download_url": "https://github.com/prgmitchell/blur-filter/releases/download/1.1.0/blur-filter-1.1.0-win.zip",
@@ -31,9 +63,9 @@
             "md5": "92ebeccd9bfb57276c8fd2891bcce176"
         },
         "OBS": {
-            "download_url": "https://github.com/obsproject/obs-studio/releases/download/29.1.0/OBS-Studio-29.1-Full.zip",
+            "download_url": "https://github.com/obsproject/obs-studio/releases/download/29.1.1/OBS-Studio-29.1.1.zip",
             "filename": "obs.zip",
-            "md5": "17c1966c931a14876ff998c1bd86cf2b"
+            "md5": "43337c4d1ff2789fc2ba317e93eb3afa"
         },
         "Scene as Transition": {
             "download_url": "https://obsproject.com/forum/resources/scene-as-transition.1704/version/4852/download?file=93176",
@@ -56,9 +88,9 @@
             "md5": "0f31ba0dcb3cf10dd115dc225d84fa00"
         },
         "win-capture-audio": {
-            "download_url": "https://github.com/bozbez/win-capture-audio/releases/download/v2.2.2-beta/win-capture-audio-2.2.2-beta.zip",
+            "download_url": "https://github.com/bozbez/win-capture-audio/releases/download/v2.2.3-beta/win-capture-audio-2.2.3-beta.zip",
             "filename": "win-capture-audio.zip",
-            "md5": "2e6886fb58a17e3b9d2fa059272e3310"
+            "md5": "37c76d50233f0fe7bcad81d0fd9b9bf9"
         },
         "xObsAsyncImageSource": {
             "download_url": "https://obsproject.com/forum/resources/xobsasyncimagesource-asynchronous-image-source.1681/version/4837/download?file=93018",
@@ -70,11 +102,6 @@
             "filename": "xObsBrowserAutoRefresh.7z",
             "md5": "9ed2544d51499aaafa198f58813866d3"
         }
-    },
-    "icon": {
-        "download_url": "https://cgg.spafbi.com/cgg-rotated-logo.ico",
-        "filename": "cgg-rotated-logo.ico",
-        "md5": "56adbdc70f03bcae2681f9af68cd5677"
     },
     "moves": {
         "blur": "obs-studio"

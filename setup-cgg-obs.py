@@ -224,6 +224,28 @@ def move_directory(source, destination):
             shutil.move(source_item, destination_item)
 
 
+def create_shortcuts(
+    installation_directory, icon_name, shortcut_name, create_desktop=True
+):
+    shortcut_locations = [Path(installation_directory)]
+
+    if create_desktop:
+        shortcut_locations.append(winshell.desktop())
+
+    bin_path = Path(f"{installation_directory}/bin/64bit/obs64.exe")
+    for this_shortcut_path in shortcut_locations:
+        target = Dispatch("WScript.Shell").CreateShortCut(
+            f"{this_shortcut_path}\\{shortcut_name}.lnk"
+        )
+        target.Targetpath = f"{bin_path}"
+        if os.path.exists(Path(f"{installation_directory}/{icon_name}")):
+            icon_location = Path(f"{installation_directory}/{icon_name}")
+            target.IconLocation = f"{icon_location}"
+        target.WorkingDirectory = dirname(bin_path)
+        # target.ShellExecute = "runas" # This doesn't work - was to set shortcut to run as admin
+        target.save()
+
+
 def create_shortcut(installation_directory, icon_name):
     desktop = winshell.desktop()
     bin_path = Path(f"{installation_directory}/bin/64bit/obs64.exe")
@@ -280,6 +302,14 @@ def main():
         default="__invalid__",
     )
     parser.add_argument(
+        "-b",
+        "--branding",
+        type=str,
+        required=False,
+        help="""Icon branding to use. CGG, GC, etc.""",
+        default="CGG",
+    )
+    parser.add_argument(
         "-v",
         "--verbose",
         action="store_true",
@@ -331,7 +361,9 @@ def main():
 
     # Get some vars from the json_data
     data = json_data.get("downloads", dict())
-    icon = json_data.get("icon", dict())
+    icon = json_data.get("branding", dict()).get(args.branding, False)
+    if not icon:
+        icon = json_data.get("branding", dict()).get("CGG")
     moves = json_data.get("moves", dict())
 
     # Let's first download and extract OBS
@@ -362,10 +394,12 @@ def main():
     icon_filename = icon.get("filename", "cgg-rotated-logo.ico")
     icon_url = icon.get("download_url", "https://cgg.spafbi.com/cgg-rotated-logo.ico")
     icon_path = Path(f"{installation_directory}/{icon_filename}")
+    shortcut_name = icon.get("shortcut_name", "Chaotic Good Gaming OBS")
+
     if not os.path.exists(icon_path):
         download_file(icon_url, installation_directory, icon_filename)
 
-    create_shortcut(installation_directory, icon_filename)
+    create_shortcuts(installation_directory, icon_filename, shortcut_name)
 
 
 if __name__ == "__main__":
