@@ -53,9 +53,9 @@
             "md5": "74dfbaab53ef016f49d6760c3549f941"
         },
         "Move Transition": {
-            "download_url": "https://obsproject.com/forum/resources/move-transition.913/version/4854/download?file=93246",
+            "download_url": "https://obsproject.com/forum/resources/move-transition.913/version/4904/download?file=94076",
             "filename": "move-transition.zip",
-            "md5": "c5cf94abbd5b3900daf61f4efe98da83"
+            "md5": "9f08ba60e3e290fe69034078e8a62bcf"
         },
         "Multiple RTMP outputs plugin": {
             "download_url": "https://github.com/sorayuki/obs-multi-rtmp/releases/download/0.3.0.2/obs-multi-rtmp-0.3.0.2-windows-x64.zip",
