@@ -97,7 +97,7 @@ def download_and_extract(
             f"Download of {download_name} failed. {download_name} has not been installed"
         )
         print()
-        return
+        return False
 
     is_installed = os.path.isfile(file_semaphore) if md5_matches else False
 
@@ -105,20 +105,22 @@ def download_and_extract(
         print_text(f"Installing {download_name}")
         filename_len = len(filename)
         if filename[filename_len - 3 :].lower() == "zip":
-            installed = extract_zip(installation_path, file_path)
+            installed, error = extract_zip(installation_path, file_path)
         elif filename[filename_len - 2 :].lower() == "7z":
-            installed = extract_7z(installation_path, file_path)
+            installed, error = extract_7z(installation_path, file_path)
         else:
             installed = False
 
         if not installed:
             print_text(f"Installation of {download_name} failed")
+            return False, error
         else:
             f = open(file_semaphore, "a")
             f.close()
     else:
         print_text(f"{download_name} already installed/updated")
     print()
+    return True, False
 
 
 # Function to download a file
@@ -161,11 +163,11 @@ def extract_zip(target_directory, filename):
     try:
         with zipfile.ZipFile(filename, "r") as zip_ref:
             zip_ref.extractall(target_directory)
-        return True
+        return True, False
     except Exception as e:
-        logging.debug(f"{filename} could not be extracted to {target_directory}")
-        logging.debug(e)
-        return False
+        logging.info(f"{filename} could not be extracted to {target_directory}")
+        logging.info(e)
+        return False, e
 
 
 def extract_7z(target_directory, filename):
@@ -176,11 +178,11 @@ def extract_7z(target_directory, filename):
         archive = py7zr.SevenZipFile(filename, mode="r")
         archive.extractall(path=target_directory)
         archive.close()
-        return True
+        return True, False
     except Exception as e:
-        logging.debug(f"{filename} could not be extracted to {target_directory}")
-        logging.debug(e)
-        return False
+        logging.info(f"{filename} could not be extracted to {target_directory}")
+        logging.info(e)
+        return False, e
 
 
 def move_and_remove_directory(source, destination):
@@ -368,8 +370,9 @@ def main():
 
     # Let's first download and extract OBS
     this_obs = data.get("OBS", False)
+
     if this_obs:
-        download_and_extract(
+        success, error = download_and_extract(
             "OBS", this_obs, installation_directory, downloads_directory
         )
 
@@ -400,7 +403,6 @@ def main():
         download_file(icon_url, installation_directory, icon_filename)
 
     create_shortcuts(installation_directory, icon_filename, shortcut_name)
-
 
 if __name__ == "__main__":
     main()

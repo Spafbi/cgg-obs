@@ -35,72 +35,86 @@
         "3D Effect": {
             "download_url": "https://obsproject.com/forum/resources/3d-effect.1692/version/4802/download?file=92514",
             "filename": "3D_Effect.zip",
-            "md5": "46002b6ba8fe830951c029a91638b7b5"
+            "md5": "46002b6ba8fe830951c029a91638b7b5",
+            "plugin_home_url": "https://obsproject.com/forum/resources/3d-effect.1692/"
         },
         "Advanced Scene Switcher": {
             "download_url": "https://github.com/WarmUpTill/SceneSwitcher/releases/download/1.21.1/advanced-scene-switcher-windows-x64.zip",
             "filename": "advanced-scene-switcher-windows-x64.zip",
-            "md5": "5bcf697619fd71a1baacac960f9193f5"
+            "md5": "5bcf697619fd71a1baacac960f9193f5",
+            "plugin_home_url": "https://obsproject.com/forum/resources/3d-effect.1692/"
         },
         "Background Removal / Portrait Segmentation / Virtual Green-screen": {
-            "download_url": "https://github.com/royshil/obs-backgroundremoval/releases/download/v0.5.19/obs-backgroundremoval-0.5.19-windows-x64.zip",
+            "download_url": "https://github.com/royshil/obs-backgroundremoval/releases/download/v1.0.0/obs-backgroundremoval-1.0.0-windows-x64.zip",
             "filename": "obs-backgroundremoval-windows-x64.zip",
-            "md5": "486117ba2e32b0ecc6e50f4586b48353"
+            "md5": "08ea16e55e67f04e5923a59d2ad96f68",
+            "plugin_home_url": "https://github.com/royshil/obs-backgroundremoval/"
         },
         "Blur": {
             "download_url": "https://github.com/prgmitchell/blur-filter/releases/download/1.1.0/blur-filter-1.1.0-win.zip",
             "filename": "blur-filter-win.zip",
-            "md5": "74dfbaab53ef016f49d6760c3549f941"
+            "md5": "74dfbaab53ef016f49d6760c3549f941",
+            "plugin_home_url": "https://github.com/prgmitchell/blur-filter/"
         },
         "Move Transition": {
             "download_url": "https://obsproject.com/forum/resources/move-transition.913/version/4904/download?file=94076",
             "filename": "move-transition.zip",
-            "md5": "9f08ba60e3e290fe69034078e8a62bcf"
+            "md5": "9f08ba60e3e290fe69034078e8a62bcf",
+            "plugin_home_url": "https://obsproject.com/forum/resources/move-transition.913/"
         },
         "Multiple RTMP outputs plugin": {
-            "download_url": "https://github.com/sorayuki/obs-multi-rtmp/releases/download/0.3.0.2/obs-multi-rtmp-0.3.0.2-windows-x64.zip",
+            "download_url": "https://github.com/sorayuki/obs-multi-rtmp/releases/download/0.3.0.2-OBS29.1.1/obs-multi-rtmp-0.3.0.2-windows-x64.zip",
             "filename": "obs-multi-rtmp-windows-x64.zip",
-            "md5": "92ebeccd9bfb57276c8fd2891bcce176"
+            "md5": "60d367d1684ef24088e66186bd2adb29",
+            "plugin_home_url": "https://github.com/sorayuki/obs-multi-rtmp/"
         },
         "OBS": {
-            "download_url": "https://github.com/obsproject/obs-studio/releases/download/29.1.1/OBS-Studio-29.1.1.zip",
+            "download_url": "https://github.com/obsproject/obs-studio/releases/download/29.1.2/OBS-Studio-29.1.2.zip",
             "filename": "obs.zip",
-            "md5": "43337c4d1ff2789fc2ba317e93eb3afa"
+            "md5": "43d8a9d07df8145c04bb79e6f90b3af8",
+            "plugin_home_url": "https://github.com/obsproject/obs-studio/"
         },
         "Scene as Transition": {
             "download_url": "https://obsproject.com/forum/resources/scene-as-transition.1704/version/4852/download?file=93176",
             "filename": "scene-as-transition.zip",
-            "md5": "1f69b632696efc89d185e6f42f2617c5"
+            "md5": "1f69b632696efc89d185e6f42f2617c5",
+            "plugin_home_url": "https://obsproject.com/forum/resources/scene-as-transition.1704/"
         },
         "Shaderfilter": {
             "download_url": "https://github.com/exeldro/obs-shaderfilter/releases/download/v1.22/obs-shaderfilter-1.22.0-windows.zip",
             "filename": "obs-shaderfilter-windows.zip",
-            "md5": "a9ae0b90da62e5f9bb08fcb0d4213d95"
+            "md5": "a9ae0b90da62e5f9bb08fcb0d4213d95",
+            "plugin_home_url": "https://github.com/exeldro/obs-shaderfilter/"
         },
         "Source Clone": {
             "download_url": "https://obsproject.com/forum/resources/source-clone.1632/version/4881/download?file=93640",
             "filename": "source-clone.zip",
-            "md5": "bc6b83e604d4c2fb64bc394c313eae4f"
+            "md5": "bc6b83e604d4c2fb64bc394c313eae4f",
+            "plugin_home_url": "https://obsproject.com/forum/resources/source-clone.1632/"
         },
         "Source Defaults": {
             "download_url": "https://github.com/CodeYan01/source-defaults/releases/download/v1.1.0/source-defaults-1.1.0-windows-x64.zip",
             "filename": "source-defaults.zip",
-            "md5": "0f31ba0dcb3cf10dd115dc225d84fa00"
+            "md5": "0f31ba0dcb3cf10dd115dc225d84fa00",
+            "plugin_home_url": "https://github.com/CodeYan01/source-defaults/"
         },
         "win-capture-audio": {
             "download_url": "https://github.com/bozbez/win-capture-audio/releases/download/v2.2.3-beta/win-capture-audio-2.2.3-beta.zip",
             "filename": "win-capture-audio.zip",
-            "md5": "37c76d50233f0fe7bcad81d0fd9b9bf9"
+            "md5": "37c76d50233f0fe7bcad81d0fd9b9bf9",
+            "plugin_home_url": "https://github.com/bozbez/win-capture-audio/"
         },
         "xObsAsyncImageSource": {
-            "download_url": "https://obsproject.com/forum/resources/xobsasyncimagesource-asynchronous-image-source.1681/version/4837/download?file=93018",
+            "download_url": "https://obsproject.com/forum/resources/xobsasyncimagesource-asynchronous-image-source.1681/version/4906/download?file=94166",
             "filename": "xObsAsyncImageSource.7z",
-            "md5": "7a587dd1e5c83cbaf04857ed2c8d21e9"
+            "md5": "6746e380668546113a8a179ab51cf0c4",
+            "plugin_home_url": "https://obsproject.com/forum/resources/xobsasyncimagesource-asynchronous-image-source.1681/"
         },
         "xObsBrowserAutoRefresh": {
             "download_url": "https://obsproject.com/forum/resources/xobsbrowserautorefresh-timed-automatic-browser-source-refreshing.1677/version/4864/download?file=93437",
             "filename": "xObsBrowserAutoRefresh.7z",
-            "md5": "9ed2544d51499aaafa198f58813866d3"
+            "md5": "9ed2544d51499aaafa198f58813866d3",
+            "plugin_home_url": "https://obsproject.com/forum/resources/xobsbrowserautorefresh-timed-automatic-browser-source-refreshing.1677/"
         }
     },
     "moves": {
