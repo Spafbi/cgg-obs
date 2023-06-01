@@ -20,3 +20,5 @@ options:
                         Icon branding to use. CGG, GC, etc.
   -v, --verbose         Verbose logging
   ```
+# Errors
+If you run into any errors in executing this downloader/updator, reboot your PC, then close all apps which might use OBS resources such as the virtualcam (Discord, Nvidia Broadcast, and any other apps which might use the webcam).
