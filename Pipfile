@@ -9,6 +9,7 @@ py7zr = "*"
 pywin32 = "*"
 winshell = "*"
 pyinstaller = "*"
+bs4 = "*"
 
 [dev-packages]
 

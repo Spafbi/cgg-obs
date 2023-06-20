@@ -162,3 +162,5 @@ cython_debug/
 # Testfiles
 testfile.json
 sob-obs.json
+token.txt
+*_test.py
