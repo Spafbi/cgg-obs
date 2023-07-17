@@ -160,7 +160,11 @@ cython_debug/
 #.idea/
 
 # Testfiles
-testfile.json
-sob-obs.json
-token.txt
 *_test.py
+.debug.txt
+.vscode
+debug.txt
+github_api.txt
+sob-obs.json
+testfile.json
+token.txt

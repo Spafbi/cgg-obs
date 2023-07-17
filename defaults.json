@@ -36,7 +36,7 @@
             "github": "WarmUpTill/SceneSwitcher"
         },
         "Background Removal / Portrait Segmentation / Virtual Green-screen": {
-            "filename": "obs-backgroundremoval-*-windows-x64.zip",
+            "filename": "obs-backgroundremoval-*-windows-x64*zip",
             "github": "royshil/obs-backgroundremoval"
         },
         "Blur": {
@@ -69,7 +69,7 @@
         },
         "Source Defaults": {
             "filename": "source-defaults-*-windows-x64.zip",
-            "github": "hCodeYan01/source-defaults"
+            "github": "CodeYan01/source-defaults"
         },
         "win-capture-audio": {
             "filename": "win-capture-audio-*.zip",
@@ -77,14 +77,14 @@
         },
         "xObsAsyncImageSource": {
             "filename": "xObsAsyncImageSource-win-x64.7z",
-            "obsproject": "xobsasyncimagesource-asynchronous-image-source.1681"
+            "github": "YorVeX/xObsAsyncImageSource"
         },
         "xObsBrowserAutoRefresh": {
             "filename": "xObsBrowserAutoRefresh-win-x64.7z",
-            "obsproject": "xobsbrowserautorefresh-timed-automatic-browser-source-refreshing.1677"
+            "github": "YorVeX/xObsBrowserAutoRefresh"
         }
     },
     "moves": {
-        "blur": "obs-studio"
+        "Blur": "obs-studio"
     }
 }
