@@ -83,7 +83,7 @@ class cggOBS:
         # Set our icon info for use elsewhere in this object
         self.github_path = branding_info.get("github", "Spafbi/cgg-obs")
         self.icon_filename = branding_info.get("filename", "cgg-rotated-logo.ico")
-        self.icon_url = f"https://raw.githubusercontent.com/{self.github_path}/master/icons/{self.icon_filename}"
+        self.icon_url = f"https://raw.githubusercontent.com/{self.github_path}/main/icons/{self.icon_filename}"
         self.shortcut_icon_filename = (
             f"{self.installation_directory}/{self.icon_filename}"
         )
@@ -175,10 +175,6 @@ class cggOBS:
             if not download:
                 continue
 
-            logging.debug(
-                f"XXX: {this_object}:: {download}; {installed_version}, {filename}, {installed_matches}; {installed_tag}, {tag} {static_name}"
-            )
-
             success = download_file(**download_this)
 
             self.downloads_status[this_object]["download_success"] = success
@@ -242,10 +238,8 @@ class cggOBS:
         if (
             not len(result) or file_name == "__invalid__"
         ):  # Use a default config if we have an empty result or no file was specified.
-            file_name = get_github_project_download_url(
-                "Spafbi/cgg-obs", "defaults.json"
-            )
-            result = read_json_from_url(file_name[0])
+            url = f"https://raw.githubusercontent.com/Spafbi/cgg-obs/main/defaults.json"
+            result = read_json_from_url(url)
         return result
 
     def move_directories(self):
@@ -432,7 +426,7 @@ def download_json(url):
         response = requests.get(url)
     except Exception as e:
         logging.info(
-            "Could not determine defaults.json download URL. Installation halted."
+            "Could not download URL. Installation halted."
         )
         logging.info(e)
         exit(1)

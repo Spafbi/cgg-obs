@@ -4,14 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-requests = "*"
-py7zr = "*"
-winshell = "*"
-pyinstaller = "*"
 bs4 = "*"
+py7zr = "*"
+pyinstaller = "*"
+requests = "*"
+winshell = "*"
+pywin32 = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.11"
-python_full_version  = "3.11.4"
+python_full_version = "3.11.4"
