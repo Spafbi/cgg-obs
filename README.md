@@ -5,9 +5,9 @@ May be run as an executable ([downloaded from here](https://github.com/spafbi/cg
 ## Options
 These options may be used with both the executable and python script.
 ```txt
-usage: setup.py [-h] [-j JSON] [-t TARGET] [-d DOWNLOADS] [-b BRANDING] [-g GITHUB] [-v]
+usage: cgg-obs-setup.py [-h] [-j JSON] [-t TARGET] [-d DOWNLOADS] [-b BRANDING] [-g GITHUB] [-v]
 
-setup.py executes the CGG OBS installation and update tool.
+cgg-obs-setup.py executes the CGG OBS installation and update tool.
 
 options:
   -h, --help            show this help message and exit
@@ -36,5 +36,5 @@ pipenv shell
 1) For the above command, make sure to use at least Python 3.11.3, and substitute the correct Python binary version you have installed
 
 ```cmd
-pyinstaller --onefile .\setup.py
+pyinstaller --onefile .\cgg-obs-setup.py
 ```
