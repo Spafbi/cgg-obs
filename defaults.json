@@ -40,8 +40,8 @@
             "github": "royshil/obs-backgroundremoval"
         },
         "Blur": {
-            "filename": "blur-filter-*-win.zip",
-            "github": "prgmitchell/blur-filter"
+            "filename": "obs-composite-blur-*-windows.zip",
+            "github": "FiniteSingularity/obs-composite-blur"
         },
         "Move Transition": {
             "filename": "move-transition-*-windows.zip",
