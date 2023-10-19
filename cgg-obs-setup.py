@@ -120,6 +120,7 @@ class cggOBS:
         ).items():
             filename_pattern = values.get("filename", False)
             force_download = values.get("force_download", False)
+            latest = values.get("latest", True)
             if not filename_pattern:
                 continue
 
@@ -131,7 +132,7 @@ class cggOBS:
                 )
             elif "github" in values:
                 this_url, filename, tag = get_github_project_download_url(
-                    values.get("github"), filename_pattern, self.github_api
+                    values.get("github"), filename_pattern, latest, self.github_api
                 )
                 logging.debug(this_url)
                 logging.debug(filename)
@@ -213,6 +214,8 @@ class cggOBS:
                 extraction_success = False
 
             if extraction_success:
+                if not download_object in self.installed_versions:
+                    self.installed_versions[download_object] = dict()
                 self.installed_versions[download_object]["filename"] = filename
                 self.downloads_status[download_object]["installed"] = True
                 if tag:
@@ -507,13 +510,16 @@ def extract_7z(archive_filepath, extraction_directory):
         return False
 
 
-def get_github_project_download_url(github_path, file_pattern, api_key=""):
+def get_github_project_download_url(github_path, file_pattern, latest, api_key=""):
     logging.debug(f"...")
     logging.debug(f"Executing function: {inspect.stack()[0][3]}")
     for name, value in locals().items():
         logging.debug(f"  {name}: {value}")
 
-    page_url = f"https://api.github.com/repos/{github_path}/releases"
+    if latest:
+        page_url = f"https://api.github.com/repos/{github_path}/releases/latest"
+    else:
+        page_url = f"https://api.github.com/repos/{github_path}/releases"
 
     headers = defaultdict(lambda: defaultdict(dict))
     if len(api_key) > 1:
@@ -537,7 +543,11 @@ def get_github_project_download_url(github_path, file_pattern, api_key=""):
         return False, False, False
 
     json_data = response.text
-    json_data = json.loads(json_data)[0]
+
+    if latest:
+        json_data = json.loads(json_data)
+    else:
+        json_data = json.loads(json_data)[0]
 
     for asset in json_data.get("assets", dict()):
         if fnmatch(asset.get("name"), file_pattern):
