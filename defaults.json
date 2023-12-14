@@ -52,7 +52,7 @@
             "github": "sorayuki/obs-multi-rtmp"
         },
         "OBS": {
-            "filename": "OBS-Studio-[0-9.].zip",
+            "filename": "OBS-Studio-*.zip",
             "github": "obsproject/obs-studio"
         },
         "Scene as Transition": {

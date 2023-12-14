@@ -550,10 +550,16 @@ def get_github_project_download_url(github_path, file_pattern, latest, api_key="
         json_data = json.loads(json_data)[0]
 
     for asset in json_data.get("assets", dict()):
-        if fnmatch(asset.get("name"), file_pattern):
+        this_asset_name = asset.get("name")
+
+        # One-off to skip grabbing OBS pdbs - needed as fnmatch doesn't support real regex
+        if fnmatch(this_asset_name, "OBS-Studio-*-pdbs.zip"):
+            continue
+            
+        if fnmatch(this_asset_name, file_pattern):
             return (
                 asset.get("browser_download_url"),
-                asset.get("name"),
+                this_asset_name,
                 json_data.get("tag_name"),
             )
 
