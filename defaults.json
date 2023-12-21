@@ -43,6 +43,10 @@
             "filename": "obs-composite-blur-*-windows.zip",
             "github": "FiniteSingularity/obs-composite-blur"
         },
+        "Gradient Source": {
+            "filename": "gradient-source-*-windows.zip",
+            "obsproject": "gradient-source.1172"
+        },
         "Move Transition": {
             "filename": "move-transition-*-windows.zip",
             "obsproject": "move-transition.913"
