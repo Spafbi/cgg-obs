@@ -44,7 +44,7 @@ This tool provides a simple graphical interface to download and install OBS Stud
 
 ## Using the pre-built release
 - Download and extract the latest pre-built installer archive from [here](https://github.com/Spafbi/cgg-obs/releases/latest/download/cgg-obs.zip)
-- Execute `OBS_Installer.exe` from the release
+- Execute `OBS_Installer.exe` from the release archive
 
 <details>
 <summary><strong>Build Requirements</strong></summary>
