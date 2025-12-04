@@ -42,8 +42,9 @@ This tool provides a simple graphical interface to download and install OBS Stud
 
 </details>
 
+## Bundled plugins
 <details>
-<summary><strong>Bundled plugins</strong></summary>
+<summary><strong>Click to expand bundled plugins list</strong></summary>
 
 - 3D Effect
 - Advanced Scene Switcher
