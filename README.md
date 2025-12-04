@@ -1,4 +1,4 @@
-# CGG OBS Studio Installer
+# Chaotic Good Gaming OBS Studio Installer
 
 A Python 3.13 application with a Qt6 GUI for downloading and installing OBS Studio and a curated set of plugins on Windows.
 
