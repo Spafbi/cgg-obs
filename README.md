@@ -42,6 +42,26 @@ This tool provides a simple graphical interface to download and install OBS Stud
 
 </details>
 
+<details>
+<summary><strong>Bundled plugins</strong></summary>
+
+- 3D Effect
+- Advanced Scene Switcher
+- Background Removal / Portrait Segmentation / Virtual Green-screen
+- Blur
+- Gradient Source
+- Move Transition
+- Multiple RTMP outputs plugin
+- Retro Effects
+- Scene as Transition
+- Shaderfilter
+- Source Clone
+- Source Defaults
+- xObsAsyncImageSource
+- xObsBrowserAutoRefresh
+
+</details>
+
 ## Using the pre-built release
 - Download and extract the latest pre-built installer archive from [here](https://github.com/Spafbi/cgg-obs/releases/latest/download/cgg-obs.zip)
 - Execute `OBS_Installer.exe` from the release archive
