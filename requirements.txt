@@ -1,0 +1,52 @@
+# OBS Installer Requirements
+# Python 3.13+ required
+
+# GUI Framework
+PyQt6>=6.6.0
+
+# HTTP Requests and downloads
+requests>=2.31.0
+
+# HTML parsing for OBS Project downloads
+beautifulsoup4>=4.12.0
+
+# Archive extraction
+py7zr>=0.20.0
+
+# Windows-specific packages for shortcut creation
+pywin32>=306; sys_platform == "win32"
+winshell>=0.6; sys_platform == "win32"
+
+# JSON handling (built-in, but for clarity)
+# json - built-in module
+
+# File system operations (built-in since Python 3.4+)
+# pathlib - built-in module
+
+# Threading and async operations (built-in)
+# threading - built-in module
+# asyncio - built-in module
+
+# ZIP file handling (built-in)
+# zipfile - built-in module
+
+# Operating system interface (built-in)
+# os - built-in module
+
+# System-specific parameters (built-in)
+# sys - built-in module
+
+# Configuration file handling
+configparser>=5.3.0
+
+# Executable creation
+pyinstaller>=6.0.0
+
+# Logging (built-in)
+# logging - built-in module
+
+# Date and time handling (built-in)
+# datetime - built-in module
+
+# Regular expressions (built-in)
+# re - built-in module
