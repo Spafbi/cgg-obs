@@ -14,26 +14,31 @@ This tool provides a simple graphical interface to download and install OBS Stud
 <summary><strong>Click to expand the detailed feature list</strong></summary>
 
 ### Smart Version Management
+
 - Checks GitHub for the latest stable release of OBS Studio.
 - Compares with the locally installed version to avoid unnecessary downloads.
 - Caches downloaded archives to speed up re-installations.
 
 ### Robust Download System
+
 - Resumes interrupted downloads.
 - Provides real-time download progress.
 - Automatically retries failed downloads with exponential backoff.
 
 ### Intelligent Extraction
+
 - Extracts `.zip` and `.7z` archives.
 - Handles the nested directory structure of OBS Studio and its plugins.
 - Installs plugins to the correct OBS Studio installation folder.
 
 ### Plugin Management
+
 - Installs OBS Studio and 14 pre-configured plugins from GitHub and the OBS Project website.
 - Tracks downloaded plugin versions to avoid re-downloading.
 - Can automatically clean up old plugin archives.
 
 ### Customization and Configuration
+
 - Create desktop and Start Menu shortcuts with custom icons.
 - Persistently saves user preferences (e.g., installation path, window size).
 - Supports using a GitHub token to avoid rate-limiting.
@@ -43,6 +48,7 @@ This tool provides a simple graphical interface to download and install OBS Stud
 </details>
 
 ## Bundled plugins
+
 <details>
 <summary><strong>Click to expand bundled plugins list</strong></summary>
 
@@ -64,13 +70,15 @@ This tool provides a simple graphical interface to download and install OBS Stud
 </details>
 
 ## Using the pre-built release
-- Download and extract the latest pre-built installer archive from [here](https://github.com/Spafbi/cgg-obs/releases/latest/download/cgg-obs.zip)
+
+- Download and extract the latest pre-built [installer archive](https://github.com/Spafbi/cgg-obs/releases/latest/download/cgg-obs.zip)
 - Execute `OBS_Installer.exe` from the release archive
 
 <details>
 <summary><strong>Build Requirements</strong></summary>
 
 ## Build Requirements
+
 This section is for those who wish to directly execute or tinker with the Python code
 
 - **Python 3.13**
@@ -79,40 +87,44 @@ This section is for those who wish to directly execute or tinker with the Python
 
 ## Usage
 
-1.  **Clone the repository:**
+1. **Clone the repository:**
+
     ```bash
     git clone https://github.com/spafbi/cgg-obs
     cd cgg-obs
     ```
 
-2.  **Install dependencies:**
+2. **Install dependencies:**
+
     ```bash
     pip install -r requirements.txt
     ```
 
-3.  **Run the installer:**
+3. **Run the installer:**
     You can run the application in three ways:
 
-    -   **Batch file (easiest):**
+    - **Batch file (easiest):**
         Double-click on `install_obs.bat`.
 
-    -   **Python script:**
+    - **Python script:**
+
         ```bash
         python run_installer.py
         ```
 
-    -   **As an installed package (untested):**
+    - **As an installed package (untested):**
+
         ```bash
         pip install -e .
         obs-installer
         ```
 
-4.  **Using the Application:**
-    -   Launch the installer.
-    -   Select an installation location (defaults to `%USERPROFILE%\obs`).
-    -   Choose the components to install (OBS, plugins, shortcuts).
-    -   Click "Install OBS Studio".
-    -   Follow the on-screen instructions to select a shortcut icon.
+4. **Using the Application:**
+    - Launch the installer.
+    - Select an installation location (defaults to `%USERPROFILE%\obs`).
+    - Choose the components to install (OBS, plugins, shortcuts).
+    - Click "Install OBS Studio".
+    - Follow the on-screen instructions to select a shortcut icon.
 
 ## Building the Installer
 
@@ -120,7 +132,7 @@ To build a standalone `.exe` installer, run the `build_installer.bat` script. Th
 
 ## Project Structure
 
-```
+```txt
 obs_installer/
 ├── core/         # Core logic (installer, config, GitHub client)
 ├── ui/           # PyQt6 user interface components
