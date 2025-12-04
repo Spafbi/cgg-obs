@@ -1,0 +1,62 @@
+{
+    "3D Effect": {
+        "filename": "3d-effect-*-windows.zip",
+        "obsproject": "3d-effect.1692"
+    },
+    "Advanced Scene Switcher": {
+        "filename": "advanced-scene-switcher-*-windows-x64.zip",
+        "github": "WarmUpTill/SceneSwitcher"
+    },
+    "Background Removal / Portrait Segmentation / Virtual Green-screen": {
+        "filename": "obs-backgroundremoval-*-windows-x64*.zip",
+        "github": "royshil/obs-backgroundremoval"
+    },
+    "Blur": {
+        "filename": "obs-composite-blur-*-windows.zip",
+        "github": "FiniteSingularity/obs-composite-blur"
+    },
+    "Gradient Source": {
+        "filename": "gradient-source-*-windows.zip",
+        "obsproject": "gradient-source.1172"
+    },
+    "Move Transition": {
+        "filename": "move-transition-*-windows.zip",
+        "github": "exeldro/obs-move-transition"
+    },
+    "Multiple RTMP outputs plugin": {
+        "filename": "obs-multi-rtmp-*-windows-x64.zip",
+        "github": "sorayuki/obs-multi-rtmp"
+    },
+    "OBS": {
+        "filename": "OBS-Studio-*-Windows-x64.zip",
+        "github": "obsproject/obs-studio"
+    },
+    "Retro Effects": {
+        "filename": "obs-retro-effects-*-windows.zip",
+        "github": "FiniteSingularity/obs-retro-effects"
+    },
+    "Scene as Transition": {
+        "filename": "streamup-scene-as-transition-windows-v*.zip",
+        "github": "andilippi/obs-scene-as-transition"
+    },
+    "Shaderfilter": {
+        "filename": "obs-shaderfilter-*-windows.zip",
+        "github": "exeldro/obs-shaderfilter"
+    },
+    "Source Clone": {
+        "filename": "source-clone-*-windows.zip",
+        "obsproject": "source-clone.1632"
+    },
+    "Source Defaults": {
+        "filename": "source-defaults-*-windows-x64.zip",
+        "github": "CodeYan01/source-defaults"
+    },
+    "xObsAsyncImageSource": {
+        "filename": "xObsAsyncImageSource-*-win-x64.7z",
+        "github": "YorVeX/xObsAsyncImageSource"
+    },
+    "xObsBrowserAutoRefresh": {
+        "filename": "xObsBrowserAutoRefresh-*-win-x64.7z",
+        "github": "YorVeX/xObsBrowserAutoRefresh"
+    }
+}
