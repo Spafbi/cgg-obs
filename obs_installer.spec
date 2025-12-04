@@ -1,9 +1,10 @@
 # -*- mode: python ; coding: utf-8 -*-
 import sys
+import os
 from pathlib import Path
 
 # Resolve spec directory
-spec_dir = Path(__file__).resolve().parent
+spec_dir = Path(os.getcwd())
 
 block_cipher = None
 
