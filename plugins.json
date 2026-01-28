@@ -15,6 +15,11 @@
         "filename": "obs-composite-blur-*-windows.zip",
         "github": "FiniteSingularity/obs-composite-blur"
     },
+    "Distro AV": {
+        "filename": "distroav-*-windows-x64.zip",
+        "github": "DistroAV/DistroAV",
+        "programdata": true
+    },
     "Gradient Source": {
         "filename": "gradient-source-*-windows.zip",
         "obsproject": "gradient-source.1172"

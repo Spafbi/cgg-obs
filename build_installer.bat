@@ -73,6 +73,12 @@ if not exist "plugins.json" (
     echo ✓ plugins.json found
 )
 
+if not exist "winget.json" (
+    echo NOTE: winget.json not found (optional)
+) else (
+    echo ✓ winget.json found
+)
+
 echo.
 echo Starting PyInstaller build...
 
@@ -123,6 +129,12 @@ if exist "dist\OBS_Installer\OBS_Installer.exe" (
         echo ✓ plugins.json found in _internal
     ) else (
         echo ✗ plugins.json missing from _internal
+    )
+    
+    if exist "dist\OBS_Installer\_internal\winget.json" (
+        echo ✓ winget.json found in _internal
+    ) else (
+        if exist "winget.json" echo ✗ winget.json missing from _internal (check spec file)
     )
     echo.
     

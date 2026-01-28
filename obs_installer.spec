@@ -21,6 +21,10 @@ plugins_json = spec_dir / 'plugins.json'
 if plugins_json.exists() and plugins_json.is_file():
     datas.append((str(plugins_json), '.'))
 
+winget_json = spec_dir / 'winget.json'
+if winget_json.exists() and winget_json.is_file():
+    datas.append((str(winget_json), '.'))
+
 # Minimal hidden imports based on the codebase
 hiddenimports = [
     'bs4',

@@ -82,6 +82,16 @@ def get_plugins_json_path() -> Path:
     return get_resource_path("plugins.json")
 
 
+def get_winget_json_path() -> Path:
+    """
+    Get the path to the winget.json file.
+    
+    Returns:
+        Path: Path to the winget.json file
+    """
+    return get_resource_path("winget.json")
+
+
 def list_available_icons() -> list[Path]:
     """
     Get a list of all available icon files.
@@ -127,6 +137,10 @@ def verify_resources() -> dict[str, bool]:
     plugins_json = get_plugins_json_path()
     results['plugins_json'] = plugins_json.exists() and plugins_json.is_file()
     
+    # Check winget.json
+    winget_json = get_winget_json_path()
+    results['winget_json'] = winget_json.exists() and winget_json.is_file()
+    
     # Check if we have any icons
     available_icons = list_available_icons()
     results['has_icons'] = len(available_icons) > 0
@@ -155,6 +169,7 @@ def log_resource_status():
     # Log specific paths
     logger.info(f"Icons directory: {get_icons_directory()}")
     logger.info(f"Plugins JSON: {get_plugins_json_path()}")
+    logger.info(f"Winget JSON: {get_winget_json_path()}")
     
     # Log available icons
     icons = list_available_icons()
