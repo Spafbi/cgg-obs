@@ -7,6 +7,7 @@ Handles downloading and managing OBS Studio plugins from various sources:
 """
 
 import json
+import os
 import logging
 import re
 import zipfile
@@ -39,12 +40,13 @@ class PluginInfo:
     """Information about a plugin."""
     
     def __init__(self, name: str, filename_pattern: str, source_type: str, source_path: str, 
-                 release: Optional[str] = None):
+                 release: Optional[str] = None, install_to_programdata: bool = False):
         self.name = name
         self.filename_pattern = filename_pattern
         self.source_type = source_type  # 'github' or 'obsproject'
         self.source_path = source_path
         self.release = release  # Specific release if specified
+        self.install_to_programdata = install_to_programdata
         
     def __repr__(self):
         return f"PluginInfo(name='{self.name}', source='{self.source_type}:{self.source_path}')"
@@ -53,13 +55,14 @@ class PluginInfo:
 class PluginVersion:
     """Version information for a downloaded plugin."""
     
-    def __init__(self, name: str, version: str, release_date: str, download_url: str, 
-                 local_path: Path):
+    def __init__(self, name: str, version: str, release_date: str, download_url: str,
+                 local_path: Path, is_programdata_variant: bool = False):
         self.name = name
         self.version = version
         self.release_date = release_date
         self.download_url = download_url
         self.local_path = local_path
+        self.is_programdata_variant = is_programdata_variant
         self.downloaded_at = datetime.now().isoformat()
     
     def to_dict(self) -> Dict[str, Any]:
@@ -70,7 +73,8 @@ class PluginVersion:
             'release_date': self.release_date,
             'download_url': self.download_url,
             'local_path': str(self.local_path),
-            'downloaded_at': self.downloaded_at
+            'downloaded_at': self.downloaded_at,
+            'is_programdata_variant': self.is_programdata_variant
         }
     
     @classmethod
@@ -81,7 +85,8 @@ class PluginVersion:
             version=data['version'],
             release_date=data['release_date'],
             download_url=data['download_url'],
-            local_path=Path(data['local_path'])
+            local_path=Path(data['local_path']),
+            is_programdata_variant=data.get('is_programdata_variant', False)
         )
         instance.downloaded_at = data.get('downloaded_at', datetime.now().isoformat())
         return instance
@@ -147,11 +152,12 @@ class OBSPluginManager:
                 
                 filename = config.get('filename', '')
                 release = config.get('release')  # Optional specific release
+                install_to_programdata = config.get('programdata', False)
                 
                 if 'github' in config:
-                    plugin = PluginInfo(name, filename, 'github', config['github'], release)
+                    plugin = PluginInfo(name, filename, 'github', config['github'], release, install_to_programdata)
                 elif 'obsproject' in config:
-                    plugin = PluginInfo(name, filename, 'obsproject', config['obsproject'], release)
+                    plugin = PluginInfo(name, filename, 'obsproject', config['obsproject'], release, install_to_programdata)
                 else:
                     self.logger.warning(f"Plugin '{name}' has no valid source (github/obsproject)")
                     continue
@@ -433,7 +439,8 @@ class OBSPluginManager:
                     version=version,
                     release_date=release_date,
                     download_url=download_url,
-                    local_path=result.file_path
+                    local_path=result.file_path,
+                    is_programdata_variant=is_programdata_variant
                 )
                 
                 self.downloaded_versions[plugin.name] = plugin_version
@@ -442,8 +449,8 @@ class OBSPluginManager:
                 self.logger.info(f"Successfully downloaded {plugin.name} to {result.file_path}")
                 
                 # Extract the plugin if OBS install directory is available
-                if self.obs_install_dir:
-                    self.extract_plugin(result.file_path, plugin.name, is_programdata_variant)
+                if self.obs_install_dir or plugin.install_to_programdata:
+                    self.extract_plugin(result.file_path, plugin.name, is_programdata_variant, plugin.install_to_programdata)
                 
                 return result.file_path
             else:
@@ -455,7 +462,7 @@ class OBSPluginManager:
             self.logger.error(f"Error downloading {plugin.name}: {e}")
             return None
     
-    def extract_plugin(self, archive_path: Path, plugin_name: str, is_programdata_variant: bool = False) -> bool:
+    def extract_plugin(self, archive_path: Path, plugin_name: str, is_programdata_variant: bool = False, install_to_programdata: bool = False) -> bool:
         """
         Extract plugin archive to OBS installation directory.
         
@@ -463,17 +470,34 @@ class OBSPluginManager:
             archive_path: Path to the downloaded archive
             plugin_name: Name of the plugin for logging
             is_programdata_variant: Whether this is a ProgramData-specific plugin variant (for logging only)
+            install_to_programdata: Whether to install to %ProgramData%\obs-studio\plugins
             
         Returns:
             True if extraction successful, False otherwise
         """
-        # Always install to OBS directory
-        if not self.obs_install_dir:
-            self.logger.warning(f"No OBS installation directory set, skipping extraction of {plugin_name}")
-            return False
-            
-        target_dir = self.obs_install_dir
-        self.logger.info(f"Extracting {plugin_name} to OBS installation directory: {target_dir}")
+        target_dir = None
+        
+        if install_to_programdata:
+            program_data = os.environ.get('ProgramData')
+            if program_data:
+                target_dir = Path(program_data) / "obs-studio" / "plugins"
+                try:
+                    target_dir.mkdir(parents=True, exist_ok=True)
+                    self.logger.info(f"Plugin {plugin_name} configured for ProgramData installation. Target: {target_dir}")
+                except Exception as e:
+                    self.logger.error(f"Failed to create ProgramData directory {target_dir}: {e}")
+                    return False
+            else:
+                self.logger.error(f"ProgramData environment variable not found for {plugin_name}")
+                return False
+        else:
+            # Always install to OBS directory
+            if not self.obs_install_dir:
+                self.logger.warning(f"No OBS installation directory set, skipping extraction of {plugin_name}")
+                return False
+                
+            target_dir = self.obs_install_dir
+            self.logger.info(f"Extracting {plugin_name} to OBS installation directory: {target_dir}")
             
         if not archive_path.exists():
             self.logger.error(f"Archive file not found: {archive_path}")
@@ -550,9 +574,15 @@ class OBSPluginManager:
         
         # Check if update is needed
         if not self.needs_update(plugin, version, release_date):
-            return self.downloaded_versions[plugin.name].local_path
+            current_version = self.downloaded_versions[plugin.name]
+            # Even if up-to-date, ensure it's extracted
+            if self.obs_install_dir or plugin.install_to_programdata:
+                self.logger.info(f"Plugin {plugin.name} is up-to-date, ensuring it is extracted.")
+                self.extract_plugin(current_version.local_path, plugin.name, current_version.is_programdata_variant, plugin.install_to_programdata)
+            return current_version.local_path
         
-        return self.download_plugin(plugin, download_url, filename, version, release_date)
+        is_programdata_variant = 'programdata' in filename.lower()
+        return self.download_plugin(plugin, download_url, filename, version, release_date, is_programdata_variant)
     
     def download_obsproject_plugin(self, plugin: PluginInfo) -> Optional[Path]:
         """Download plugin from OBS Project."""
@@ -580,7 +610,11 @@ class OBSPluginManager:
                 # This is a simple heuristic since we don't have good version info
                 file_age = datetime.now() - datetime.fromisoformat(current.downloaded_at.replace('Z', '+00:00').replace('+00:00', ''))
                 if file_age.days < 1:
-                    self.logger.info(f"OBS Project plugin {plugin.name} was downloaded recently, skipping")
+                    self.logger.info(f"OBS Project plugin {plugin.name} was downloaded recently, skipping download.")
+                    # Even if skipping download, ensure it's extracted
+                    if self.obs_install_dir or plugin.install_to_programdata:
+                        self.logger.info(f"Ensuring plugin {plugin.name} is extracted.")
+                        self.extract_plugin(current.local_path, plugin.name, current.is_programdata_variant, plugin.install_to_programdata)
                     return current.local_path
         
         return self.download_plugin(plugin, download_url, filename, version, release_date, is_programdata_variant)
@@ -608,7 +642,7 @@ class OBSPluginManager:
         for i, plugin in enumerate(plugins):
             try:
                 if progress_callback:
-                    action = "Downloading and extracting" if self.obs_install_dir else "Downloading"
+                    action = "Downloading and extracting" if (self.obs_install_dir or plugin.install_to_programdata) else "Downloading"
                     progress_callback(i + 1, total, f"{action} {plugin.name}...")
                 
                 self.logger.info(f"Processing plugin: {plugin.name}")

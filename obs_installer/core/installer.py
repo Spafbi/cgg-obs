@@ -17,6 +17,7 @@ from ..core.config import ConfigManager
 from ..core.github_client import GitHubAPIClient, Release
 from ..utils.downloader import FileDownloader, DownloadProgress
 from ..utils.extractor import ZipExtractor, ExtractionProgress
+from ..utils.winget_manager import WingetManager
 
 
 class InstallationWorker(QThread):
@@ -49,6 +50,7 @@ class InstallationWorker(QThread):
         self.github_client = GitHubAPIClient(github_token=github_token)
         self.downloader = FileDownloader()
         self.extractor = ZipExtractor()
+        self.winget_manager = WingetManager()
         
         # State
         self.cancelled = False
@@ -119,7 +121,13 @@ class InstallationWorker(QThread):
             if self.cancelled:
                 return
             
-            # Step 3: Request shortcut creation if requested
+            # Step 3: Install Winget packages
+            self._install_winget_packages()
+            
+            if self.cancelled:
+                return
+            
+            # Step 4: Request shortcut creation if requested
             if self.options.get('create_shortcuts', True):
                 self.log_message.emit("Requesting shortcut creation", "INFO")
                 self.shortcut_creation_requested.emit(str(self.install_path))
@@ -158,6 +166,34 @@ class InstallationWorker(QThread):
                 self.downloader.cleanup_partial_download(self.current_download_path)
             except Exception as e:
                 self.logger.error(f"Failed to cleanup partial download: {e}")
+    
+    def _install_winget_packages(self):
+        """Install packages via winget."""
+        try:
+            # Check if we have packages to install
+            packages = self.winget_manager.get_all_packages()
+            if not packages:
+                return
+
+            self.log_message.emit(f"Installing {len(packages)} external packages via winget", "INFO")
+            self.status_updated.emit("Installing external dependencies (winget)...", True)
+            
+            # Progress callback wrapper
+            def progress_callback(current, total, message):
+                self.progress_updated.emit(0, 0, message)
+            
+            success, errors = self.winget_manager.install_packages(progress_callback)
+            
+            if success:
+                self.log_message.emit("Winget packages installed successfully", "INFO")
+            else:
+                self.log_message.emit("Failed to install some winget packages", "WARNING")
+                for error in errors:
+                    self.log_message.emit(f"Winget error: {error}", "ERROR")
+                    
+        except Exception as e:
+            self.log_message.emit(f"Error during winget installation: {e}", "ERROR")
+            self.logger.error(f"Error during winget installation: {e}")
     
     def _download_plugins(self):
         """Download OBS plugins."""
