@@ -48,6 +48,10 @@
         "filename": "obs-shaderfilter-*-windows.zip",
         "github": "exeldro/obs-shaderfilter"
     },
+    "Shadertastic": {
+        "filename": "shadertastic-*-windows-x64.zip",
+        "github": "xurei/shadertastic"
+    },
     "Source Clone": {
         "filename": "source-clone-*-windows.zip",
         "obsproject": "source-clone.1632"
@@ -55,6 +59,19 @@
     "Source Defaults": {
         "filename": "source-defaults-*-windows-x64.zip",
         "github": "CodeYan01/source-defaults"
+    },
+    "Source Record": {
+        "filename": "source-record-*-windows.zip",
+        "github": "exeldro/obs-source-record"
+    },
+    "Source Switcher": {
+        "filename": "source-switcher-*-windows.zip",
+        "github": "exeldro/obs-source-switcher"
+    },
+    "Transition Table": {
+        "filename": "transition-table-*-windows-programdata.zip",
+        "github": "exeldro/obs-transition-table",
+        "programdata": true
     },
     "xObsAsyncImageSource": {
         "filename": "xObsAsyncImageSource-*-win-x64.7z",
